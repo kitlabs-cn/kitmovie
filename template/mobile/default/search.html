@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="Keywords" content="{ctcms_keywords}" />
+<meta name="Description" content="{ctcms_description}" />
+<meta name="format-detection" content="telephone=no" />
+<title>搜索：{ctcms_key}</title>
+<link rel="stylesheet" href="{ctcms_templets}/images/style.css" />
+<script language="javascript" src="{ctcms_templets}/js/jquery.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/common.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/history.js"></script>
+</head>
+<body class="channel">
+{ctcms_head}
+<div class="search_top">
+<a href="{ctcms:path}" aria-hidden="true" data-icon="f" class="back"><span>返回</span></a>
+<div class="search_input">
+<form id="search" method="post" action="{ctcms_searchlink}"><input type="text" value="{ctcms_key}" name="wd" id="keyword" /></form>
+</div>
+<button aria-hidden="true" data-icon="s" onclick="if($('#keyword').val()!=''){$('#search').submit();}"><span>搜索</span></button>
+</div>
+<script>$('#nav_0').addClass('on');</script>
+	<section class="channel_top">
+		<h2>影片分类</h2>
+		<div class="channel_tit">
+			<ul id="order">
+			<li{if:'{ctcms_sort}'=='addtime' || '{ctcms_sort}'==''} class="on"{end if}><a href="{ctcms_url search=wd={ctcms_key}&cid={ctcms_cid}}">最新</a></li>
+			<li{if:'{ctcms_sort}'=='hits'} class="on"{end if}><a href="{ctcms_url search=wd={ctcms_key}&cid={ctcms_cid}&sort=hits}">最热</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="box box2">
+		<h2>视频列表</h2>
+		<ul id="list">
+    {ctcms:vod table="vod" field="id,cid,name,pic,state,info,rhits,addtime" page="18" order="addtime desc"}
+	<li><a href="[vod:link]"><span><img height="150" src="[vod:pic]" alt="[vod:name]" /><em>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</em></span><span>[vod:name]<strong>[vod:rhits]</strong></span></a></li>
+	{/ctcms:vod}
+		</ul>
+	</section>
+     {if:{ctcms_pagejs}>1}<div class="channel_more"><a href="{ctcms_pagedown}">点击查看下一页<b aria-hidden="true" data-icon="g"></b></a></div>{end if}
+</boby>
+{ctcms_bottom}
+</html>

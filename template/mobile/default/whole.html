@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="Keywords" content="{ctcms_keywords}" />
+<meta name="Description" content="{ctcms_description}" />
+<meta name="format-detection" content="telephone=no" />
+<title>{ctcms_title}</title>
+<link rel="stylesheet" href="{ctcms_templets}/images/style.css" />
+<script language="javascript" src="{ctcms_templets}/js/jquery.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/common.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/history.js"></script>
+</head>
+<body class="channel">
+{ctcms_head}
+<script>$('#nav_{ctcms_cid}').addClass('on');</script>
+	<section class="channel_top">
+		<h2>视频检索</h2>
+		<div class="channel_tit">
+			<ul id="sort">
+			<li class="{if:'{ctcms_sort}'=='' || '{ctcms_sort}'=='id' || '{ctcms_sort}'=='addtime'} on{end if}"><a href="[whole:url sort=id]">最新</a></li>
+			<li class="{if:'{ctcms_sort}'=='hits'} on{end if}"><a href="[whole:url sort=hits]">热播</a></li>
+			</ul>
+		</div>
+		<div class="channel_sort "><!--点击添加 sort_on -->
+			<a href="javascript:void(0);" class="ico_sort" aria-hidden="true" data-icon="a" onclick="switchFilter();"><span>更多分类</span></a>
+			<div class="sort_list">
+				<dl id="genre">
+				    <dt>类型</dt>
+		            <dd{if:'{ctcms_type}'==''} class="on"{end if}><a href="[whole:url type=]">全部</a></dd>
+                    {ctcms:type}<dd{if:'{ctcms_type}'=='[type:name]'} class="on"{end if}><a href="[type:link]">[type:name]</a></dd>{/ctcms:type}
+				</dl>
+				<dl id="area">
+					<dt>地区</dt>
+		            <dd{if:'{ctcms_diqu}'==''} class="on"{end if}><a href="[whole:url diqu=]">全部</a></dd>
+                    {ctcms:diqu}<dd{if:'{ctcms_diqu}'=='[diqu:name]'} class="on"{end if}><a href="[diqu:link]">[diqu:name]</a></dd>{/ctcms:diqu}
+				</dl>
+				<dl id="year">
+					<dt>年份</dt>
+		            <dd{if:'{ctcms_year}'==''} class="on"{end if}><a href="[whole:url year=]">全部</a></dd>
+                    {ctcms:year}<dd{if:'{ctcms_year}'=='[year:name]'} class="on"{end if}><a href="[year:link]">[year:name]</a></dd>{/ctcms:year}
+				</dl>
+			</div>
+		</div>
+	</section>
+
+	<section class="box box2">
+		<h2>视频列表</h2>
+		<ul id="list">
+    {ctcms:vod table="vod" field="id,cid,name,pic,state,info,rhits,addtime" page="18" order="addtime desc"}
+	<li><a href="[vod:link]"><span><img height="150" src="[vod:pic]" alt="[vod:name]" /><em>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</em></span><span>[vod:name]<strong>[vod:rhits]</strong></span></a></li>
+	{/ctcms:vod}
+		</ul>
+	</section>
+     {if:{ctcms_pagejs}>1}<div class="channel_more"><a href="{ctcms_pagedown}">点击查看下一页<b aria-hidden="true" data-icon="g"></b></a></div>{end if}
+</boby>
+{ctcms_bottom}
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{ctcms_title}</title>
+    <meta name="keywords" content="{ctcms_keywords}" />
+    <meta name="description" content="{ctcms_description}" />
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/amazeui.css">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/style.css">
+</head>
+<body>
+{ctcms_head}
+<div class="am-g am-g-fixed am-padding-top">
+    <div class="am-u-sm-12">
+		<form class="am-form am-form-horizontal" action="{ctcms_formurl}" method="post" data-am-validator>
+			<fieldset>
+				<legend>在线留言</legend>
+				<div class="am-form-group">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">您的名字</label>
+					<div class="am-u-sm-10">
+						<input type="text" name="name" id="doc-ipt-3" value="游客" placeholder="输入您的名字" required>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="doc-ipt-neir-2" class="am-u-sm-2 am-form-label">留言内容</label>
+					<div class="am-u-sm-10">
+						<textarea name="content" rows="5" id="doc-ta-1" required></textarea>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="doc-ipt-2" class="am-u-sm-2 am-form-label">验证码</label>
+					<div class="am-u-sm-3">
+						<input type="text" name="code" id="doc-ipt-2" value="" placeholder="输入验证码" required>
+					</div>
+					<div class="am-u-sm-7" style="padding-left:0;">
+						<label><img src="{ctcms_codeurl}" onclick="this.src='{ctcms_codeurl}?temp='+ (new Date().getTime().toString(36)); return false"></label>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<div class="am-u-sm-10 am-u-sm-offset-2">
+						 <button type="submit" class="am-btn am-btn-default">提交留言</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<fieldset>
+			<legend style="margin-bottom:0;">留言列表</legend>
+			<ul class="am-comments-list am-comments-list-flip">
+			{ctcms:gbook table="gbook" field="*" where="yid=0" page="15" order="addtime desc"}
+			<li class="am-comment">
+			<article class="am-comment">
+				<a href="#link-to-user-home">
+					<img src="{ctcms_indextemplets}/images/u.png" alt="[gbook:name]" class="am-comment-avatar" width="48" height="48"/>
+				</a>
+				<div class="am-comment-main">
+					<header class="am-comment-hd">
+						<div class="am-comment-meta">
+							 <a href="#link-to-user" class="am-comment-author">[gbook:name]</a>
+						     留言于 <time>[gbook:addtime style=Y-m-d H:i:s]</time>
+						</div>
+					</header>
+					<div class="am-comment-bd">
+						<p>[gbook:content]</p>
+						{if:'[gbook:hfcontent]'!=''}<blockquote>站长：[gbook:hfcontent]</blockquote>{end if}
+					</div>
+				</div>
+			</article>
+			</li>
+			{/ctcms:gbook}
+			</ul>
+		</fieldset>
+		<div class="am-u-sm-12"{if:{ctcms_pagejs}<2} style="display:none;"{end if}>
+			<ul class="am-pagination am-pagination-centered">
+				<li class="pre"{if:{ctcms_page}<2} style="display:none;"{end if}><a href="{ctcms_pageup}"><<</a></li>
+				{ctcms_pagenum_8}
+				<li class="pre"{if:{ctcms_page}>={ctcms_pagenum}} style="display:none;"{end if}><a href="{ctcms_pagedown}">>></a>
+			</ul>
+		</div>
+	</div>
+</div>
+{ctcms_bottom}
+</body>
+</html>

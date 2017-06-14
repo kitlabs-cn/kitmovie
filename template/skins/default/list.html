@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{ctcms_title}</title>
+    <meta name="keywords" content="{ctcms_keywords}" />
+    <meta name="description" content="{ctcms_description}" />
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/amazeui.css">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/style.css">
+</head>
+<body>
+{ctcms_head}
+<div class="am-g am-g-fixed am-padding-top">
+    <div class="am-u-sm-12">
+        ADS
+    </div>
+</div>
+
+<div class="am-g am-g-fixed am-padding-top">
+    <div class="am-u-sm-12">
+	<!---- 分类---->
+	<div class="tag-box">
+    <table class="table" style="margin-bottom:0px;">
+        <tbody>
+        <tr>
+            <td class="tag-span">
+                <strong>分类：</strong>
+            </td>
+            <td>
+                {ctcms:class table="class" field="id,name" where="" order="xid asc"}
+				<a href="[class:link]" class="movietype{if:'{ctcms_cid}'=='[class:id]'} on{end if}">[class:name]</a>
+				{/ctcms:class}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+	<div class="xiala" onclick="get_url('{ctcms_url whole={ctcms_cid}}');">智能检索<b></b></div>
+    </div>
+	<!---- //分类---->
+<!-- Gallery -->
+<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-5 am-gallery-default am-thumbnails">
+{ctcms:vod table="vod" field="id,name,pic,info,type,year,addtime" page="40" order="addtime desc"}
+<li>
+    <div class="am-gallery-item">
+        <a href="[vod:link]">
+            <div class="main_img">
+			    <img alt="[vod:name]" style="height:250px;" src="[vod:pic]" />
+				<div class="show"><em class="imgArea"><b>观看视频</b></em></div>
+			</div>
+			<div class="{if:'[vod:info]'=='超清'}bd{elseif:'[vod:info]'=='高清'}hd{else}ts{end if}">[vod:info]</div>
+            <h3 class="am-gallery-title">[vod:name]</h3>
+            <div class="am-gallery-desc">[vod:addtime style=Y-m-d] / <em>[vod:year]</em></div>
+        </a>
+        <div class="am-gallery-desc">类型：[vod:type]</div>
+    </div>
+</li>
+{/ctcms:vod}
+</ul>
+    </div>
+</div>
+
+<div class="am-u-sm-12"{if:{ctcms_pagejs}<2} style="display:none;"{end if}>
+      <ul class="am-pagination am-pagination-centered">
+	  <li class="pre"{if:{ctcms_page}<2} style="display:none;"{end if}><a href="{ctcms_pageup}"><<</a></li>
+	  {ctcms_pagenum_8}
+	  <li class="pre"{if:{ctcms_page}>={ctcms_pagenum}} style="display:none;"{end if}><a href="{ctcms_pagedown}">>></a>
+	  </ul></div>
+</div>
+{ctcms_bottom}
+</body>
+</html>

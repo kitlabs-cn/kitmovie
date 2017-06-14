@@ -1,0 +1,6 @@
+# Robots For CTCMS
+User-agent: *
+Disallow: /attachment
+Disallow: /caches
+Disallow: /ctcms
+Disallow: /admin.php

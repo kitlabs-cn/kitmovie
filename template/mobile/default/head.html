@@ -1,0 +1,41 @@
+{ctcms_js_3}
+<header class="head">
+		<div class="header">
+		<h1><a href="{ctcms_path}">{ctcms_webname}</a></h1>
+		<ul>
+		<li class="ico_history" onclick="switchHistory()"><a href="javascript:void(0);" aria-hidden="true" data-icon="t"><span>观看历史</span></a></li>
+		<li><a href="{ctcms_searchlink}" aria-hidden="true" data-icon="s"><span>搜索</span></a></li>
+		</ul>
+		<span class="line"></span>
+		</div>
+	</header>
+	<nav class="nav" id="wrapper">
+		<div class="nav_list iScroll">
+			<ul>
+			<li id="nav_0"><a href="{ctcms_path}">首页</a></li>
+            {ctcms:class table="class" field="id,name" where="fid=0" limit="5" order="xid asc"}
+			<li id="nav_[class:id]"><a href="javascript:void(0);" onclick="setTimeout(function(){location.href='{ctcms_url whole=[class:id]}'},500)">[class:name]</a></li>
+            {/ctcms:class}
+			</ul>
+		</div>
+	</nav>
+
+	<!--播放记录 start-->
+	<section class="history"><!--点击添加 history_on -->
+		<div class="history_in">
+			<div class="title"><b></b><h2>播放记录</h2></div>
+			<ul id="history_content"></ul>
+			<div class="clean_history">
+				<a href="javascript:void(0);">清除播放记录</a>
+			</div>
+			<div class="no_history">
+				<b class="ico_movie"></b>
+				您还未观看任何影片
+			</div>
+		</div>
+	</section>
+	<!--播放记录 end-->
+
+	<div class="down_android" style="padding-top:3px;padding-bottom:6px;">
+		<h2><a href="http://mp.weixin.qq.com/s?__biz=MzA4MjUwNjk3OQ==&mid=402175163&idx=1&sn=6f31cd7a47d6f9701ffd75ecf0144ed5#rd" style="color:#fff;">最新大片加微信公众号：ttyy-tv</a></h2>
+	</div>

@@ -1,0 +1,35 @@
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，界面无法正常显示。 请安装360浏览器或谷歌浏览器，以获得更好的体验！</p>
+<![endif]-->
+<div class="am-topbar-inverse">
+    <header class="am-container">
+        <h1 class="am-topbar-brand">
+            <a href="{ctcms_path}">{ctcms_name}</a>
+        </h1>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">{ctcms_name}</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav" style="margin-left:15px;">
+            <li id="list_0"><a href="{ctcms_path}">首页</a></li>
+		    {ctcms:class table="class" field="id,name" where="fid=0" limit="4" order="xid asc"}
+            <li{if:{ctcms_cid}==[class:id]} class="am-active"{end if}><a href="{ctcms_url whole=[class:id]}">[class:name]</a></li>
+			{/ctcms:class}
+        	<li class="am-dropdown" data-am-dropdown>
+          	  <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+            	更多 <span class="am-icon-caret-down"></span>
+          	  </a>
+          	  <ul class="am-dropdown-content">
+           	    <li><a href="{ctcms_url opt=index/new}">最新上映</a></li>
+           	    <li><a href="{ctcms_url opt=index/hot}">最近热播</a></li>
+            	<li><a href="{ctcms_gbooklink}">意见交流</a></li>
+          	  </ul>
+        	</li>
+        </ul>
+        <form class="am-topbar-form am-topbar-left am-form-inline" role="search" action="{ctcms_searchlink}" method="POST">
+            <div class="am-form-group">
+                <input type="text" id="seh_v" class="am-form-field am-input-sm" name="wd" placeholder="搜索">
+            </div>
+			<button type="submit" class="am-btn am-btn-default am-btn-sm">搜索</button>
+        </form>
+		<div class="ac_results"><ul></ul></div>
+    </header>
+</div>

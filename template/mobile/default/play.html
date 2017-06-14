@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no"/>
+    <meta name="Keywords" content="{ctcms_keywords}" />
+    <meta name="Description" content="{ctcms_description}" />
+	<title>{ctcms_title}</title>
+	<link rel="stylesheet" href="{ctcms_templets}/images/play.css" />
+    <script language="javascript" src="{ctcms_templets}/js/jquery.js"></script>
+    <script language="javascript" src="{ctcms_templets}/js/common.js?v20160621"></script>
+    <script language="javascript" src="{ctcms_templets}/js/history.js"></script>
+</head>
+<body>
+    {ctcms_js_3}
+	<header id="m_header" class="head">
+		<div class="header">
+			<h1><a href="{ctcms_path}">{ctcms_name}</a></h1>
+			<ul>
+				<li><a href="{ctcms_searchlink}" aria-hidden="true" data-icon="s"><span>搜索</span></a></li>
+				<li class="ico_list"><a href="javascript:;" onclick="if($('.nav').css('display')=='none'){$('.nav').show();}else{$('.nav').hide();}" aria-hidden="true" data-icon="e"><span>列表</span></a></li>
+			</ul>
+			<span class="line"></span>
+		</div>
+	</header>
+	<nav class="nav" style="display:none;">
+		<div id="m_navList" class="nav_list">
+		<ul style="left:0;">
+			<li><a href="{ctcms:path}">首页</a></li>
+            {ctcms:class table="class" field="id,name" where="fid=0" limit="5" order="xid asc"}
+			<li{if:'[class:id]'=='[vod:cid]'} class="on"{end if}><a href="javascript:void(0);" onclick="setTimeout(function(){location.href='{ctcms_url whole=[class:id]}'},500)">[class:name]</a></li>
+            {/ctcms:class}
+        </ul>	
+		</div>
+	</nav>
+	<div id="_player" class="player">
+		{ctcms_player}
+	</div>
+	<script>
+	var h = $("#_player").height();
+	$("iframe").attr('height',h);
+	</script>
+
+	<section id="m_section" class="wrap">
+		<div class="title">
+			<h2 id="title">[vod:name]</h2>
+			<div class="func">
+				<div class="score">
+					<strong>[vod:rhits]</strong>
+					<span>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</span>
+					<span>[vod:hits]</span>
+				</div>
+				<ul>
+					<li class="func_share">
+						<a href="javascript:;" onclick="if($(this).attr('did')==1){$('.func_share').addClass('func_on');$(this).attr('did',2);}else{$('.func_share').removeClass('func_on');$(this).attr('did',1);}" blockid="200" class="func_ico" did="1" aria-hidden="true" data-icon="b"><span>分享</span></a>
+						<div>
+							<b class="tri"><b></b></b>
+							<a id="weiboShare" href="http://service.weibo.com/share/share.php?title=[vod:name]&url=[vod:link]&source=bookmark&appkey=4256128524&pic=[vod:pic]&ralateUid=" blockid="201" target="_blank"><img src="{ctcms_templets}/images/weibo.png" alt="分享至微博" /></a>
+							<a id="qzoneShare" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=[vod:link]&amp;desc=[vod:name]&amp;summary=&amp;pics=[vod:pic]&amp;site={ctcms:webname}&amp;title={ctcms:webname}" blockid="202" target="_blank"><img src="{ctcms_templets}/images/qzone.png" alt="分享至Qzone" /></a>
+						</div>
+					</li>
+					<li class="func_down ">
+						<a id="funcDown" href="javascript:;" onclick="click_scroll('down');" blockid="300" class="func_ico" aria-hidden="true" data-icon="d"><span>下载</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="sec_subTab" class="list_wrap">
+		    {ctcms_zu}
+			<div id="sublist" class="list_name">
+			<p style="padding: 0px 10px 10px;"><b>{xu}.{name}</b></p>
+					<ul class="plist_{xu}">
+	                {ctcms_ji}
+	                <li{if:{xus}>9} style="display:none"{end if} class="{if:{xus}>9}play_ji{end if}"><a href="{link}">{name}</a></li>
+	                {/ctcms_ji}
+					<li id="play_more_{xu}" style="display:none"><a href="javascript:;" onclick="if($(this).text()=='收起..'){$('.plist_{xu}').children('.play_ji').hide();$(this).text('更多...');}else{$('.plist_{xu}').children('.play_ji').show();$(this).text('收起..');}">更多...</a></li>
+					</ul>
+			</div>
+		    <script>
+            if($('.plist_{xu}').children('.play_ji').length>0){
+                $('#play_more_{xu}').show();
+		    }
+		    </script>
+			{/ctcms_zu}
+		</div>
+		<div id="sec_info" class="info">
+			<ul>
+				<li class="story" id="sec_info_1">[vod:text len=100]</li>
+				<li class="story" id="sec_info_2" style="display:none">[vod:text]</li>
+			</ul>
+			<a href="javascript:;" onclick="if($(this).text()=='展开'){$('#sec_info_1').hide();$('#sec_info_2').show();$(this).text('收起');}else{$('#sec_info_1').show();$('#sec_info_2').hide();$(this).text('展开');}" class="open">展开<b class="tri"></b></a>
+		</div>
+		<div id="sec_recommend" class="recommend">
+			<h2>推荐视频</h2>
+			<div class="reco_in">
+				<b class="tri"><b></b></b>
+				<div class="guess_you_like_wrapper">
+				<ul>
+				{ctcms:vod table="vod" field="id,cid,name,pic,state,info,rhits" where="cid={ctcms_cid}" limit="3" order="rhits desc"}
+				<li><a href="[vod:link]" ><img title="[vod:name]" alt="[vod:name]" src="[vod:pic]"/><p><span>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</span><span>[vod:rhits]</span></p></a><a href="[vod:link]" title="[vod:name]">[vod:name]</a></li>
+				{/ctcms:vod}
+				</ul>
+				</div>
+			</div>
+		</div>
+		<div id="sec_comment" class="comment">
+		    <div style="padding:5px;">{ctcms_pl}</div>
+		</div>
+	</section>
+{ctcms_bottom}
+<script type="text/javascript">
+    set_history('[vod:link]', '[vod:name]-[vod:ji]', '[vod:id]');
+	downlist('[vod:cid]');
+</script>
+</body>
+</html>

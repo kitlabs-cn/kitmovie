@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{ctcms_title}</title>
+    <meta name="keywords" content="{ctcms_keywords}" />
+    <meta name="description" content="{ctcms_description}" />
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/amazeui.css">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/style.css">
+</head>
+<body>
+<div class="playshow_mask"></div>
+<div class="light_switch" title="关灯" onclick="light();"><span>关灯</span></div>
+{ctcms_head}
+
+<div class="am-g am-g-fixed">
+    <div class="am-u-sm-12">
+        <div class="article-main">
+            <h3 class="am-article-title blog-title">
+                <a href="[vod:link]">[vod:name]</a>
+            </h3>
+        <h4 class="am-article-meta blog-meta">最后更新：[vod:addtime style=Y-m-d] 所属目录：<a href="[vod:classlink]">[vod:classname]</a>
+	    <a class="am-fr am-text-right fav" href="javascript:;" onclick="fav('{ctcms_url user=ajax/fav/[vod:id]}');" title="收藏视频"></a>
+		<div style="float:right;" class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more" style="display:none;"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_kaixin001" data-cmd="kaixin001" title="分享到开心网"></a><a href="#" class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a><a href="#" class="bds_tsohu" data-cmd="tsohu" title="分享到搜狐微博"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_ty" data-cmd="ty" title="分享到天涯社区"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
+		</h4>
+      
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <div class="player">{ctcms_player}</div>
+                </div>
+            </div>
+        </div>
+    <!-- end article -->
+
+    </div>
+    <!-- end 12 -->
+
+<div class="am-u-sm-12" style="margin-top:-10px;margin-bottom:10px;">
+    <a class="am-btn am-btn-primary am-btn-xs" href="{ctcms_slink}">播放上一集</a>
+    <a class="am-btn am-btn-primary am-btn-xs" href="{ctcms_xlink}" style="float:right;">播放下一集</a>
+</div>
+
+
+<div class="am-u-sm-12">
+        ADS
+</div>
+
+<div class="am-u-sm-12">
+    <p style="margin-bottom:0px;">热门推荐：</p>
+    <ul data-am-widget="gallery" class="am-gallery am-avg-sm-6 am-avg-md-6 am-gallery-default am-thumbnails">
+{ctcms:vod table="vod" field="id,name,pic,year,addtime" where="cid={ctcms_cid}" limit="6" order="zhits desc"}
+<li class="">
+    <div class="am-gallery-item">
+        <a href="[vod:link]">
+            <img alt="[vod:name]" style="height:220px;" src="[vod:pic]" />
+            <h3 class="am-gallery-title">[vod:name]</h3>
+            <div class="am-gallery-desc">[vod:addtime style=Y-m-d] / <em>[vod:year]</em></div>
+        </a>
+    </div>
+</li>
+{/ctcms:vod}
+    </ul>
+</div>
+
+<div class="am-u-sm-12">
+    <p style="margin-bottom:5px;">视频评论：</p>
+    {ctcms_pl}
+</div>
+
+</div>
+
+</div>
+
+
+<hr class="am-article-divider"/>
+
+{ctcms_bottom}
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"[vod:name]-在线观看","bdMini":"2","bdMiniList":false,"bdPic":"[vod:pic]","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin","kaixin001","tqf","tsohu","douban","tieba","ty","sqq"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

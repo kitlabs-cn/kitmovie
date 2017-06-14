@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ckplayer>
+	<style>		
+		<controlbar>images_buttom_bg.png</controlbar>
+		<cplay>images_Play_out.png,images_Play_on.png</cplay>
+		<cpause>images_Pause_out.png,images_Pause_on.png</cpause>
+		<pausec>images_Pause_Scgedyke.png,images_Pause_Scgedyke_on.png</pausec>
+		<sound>images_Sound_out.png,images_Sound_on.png</sound>
+		<mute>images_Mute_out.png,images_Mute_on.png</mute>
+		<full>images_Full_out.png,images_Full_on.png</full>
+		<general>images_General_out.png,images_General_on.png</general>
+		<cvolume>images_Volume_back.png,images_Volume_on.png,images_Volume_Float.png,images_Volume_Float.png</cvolume>
+		<schedule>images_Schedule_bg.png,images_Schedule_load.png,images_Schedule_play.png,images_Schedule.png,images_Schedule.png</schedule>
+		<fast>images_Fashf_out.png,images_Fashf_on.png,images_Fashr_out.png,images_Fashr_on.png</fast>
+		<advmute>images_v_off_out.png,images_v_off_on.png,images_v_on_out.png,images_v_on_on.png</advmute>
+		<advjump>images_adv_skip_out.png,images_adv_skip_on.png</advjump>
+		<advclose>images_close_adv_out.png,images_close_adv_on.png</advclose>
+		<padvclose>pause_adv_close_out.png,pause_adv_close_on.png</padvclose>
+		<pm_tween>50,300,300</pm_tween>
+		<buffer>buffer.swf</buffer>
+		<pm_load>1,1,-110,50,0,200,0</pm_load>
+		<pm_buffer>1,1,-20,-35</pm_buffer>
+		<pm_buffertext>1,1,-13,-25,0,40,0</pm_buffertext>
+		<pm_ctbar>1,2,0,-36,0,36,0</pm_ctbar>
+		<pm_sch>1,2,0,-42,0,6,0,12,12</pm_sch>
+		<pm_play>0,2,0,-36,53,36</pm_play>
+		<pm_clock>0,2,100,-25,2,0,0</pm_clock>
+		<pm_clock2>0,2,65,-26,0,0,0</pm_clock2>
+		<pr_clock></pr_clock>
+		<pr_clock2>{font color='#F8F8F8' size='12'}[$Time]{/font} {font color='#8D8D8D' size='12'}/ [$TimeAll][$Timewait]{/font}</pr_clock2>
+		<pm_timestyle>1</pm_timestyle>
+		<pm_full>2,2,-32,-36,16,36</pm_full>
+		<pm_vol>2,2,-126,-20,74,4,10,10</pm_vol>
+		<pm_sound>2,2,-151,-36,19,36</pm_sound>
+		<pm_fastf>-1,2,-13,-39,13,9</pm_fastf>
+		<pm_fastr>-1,2,0,-39,13,9</pm_fastr>
+		<pm_pa>1,1,-33,-50,66,66,0,2,10,-120</pm_pa>
+		<pm_bg>0x000000,100,230,180</pm_bg>
+		<pm_video>3,0,0,0,0xffdd00,0,0,0,0,0</pm_video>
+		<pm_pr>0x000000,0xFFFFFF,0xffffff,0,30,80,10</pm_pr>
+		<pm_advbg>0x000000,100</pm_advbg>
+		<pm_start>8,5,0xFFFFFF,100</pm_start>
+		<pm_sce>0,0x8d8d8d,100,0xFF6600,100</pm_sce>
+		<cpt>line.png,0,2,53,-36,0,1</cpt>
+		<author>赤兔cms,http://www.ctcms.cn/</author>
+		<cpt>definition.swf,2,2,-205,-28,2,1</cpt>
+		<cpt>downloadspeeds.swf,2,2,-340,-25,2</cpt>
+		<cpt>scaling.swf,0,0,0,0,2,0</cpt>
+	</style>
+</ckplayer>

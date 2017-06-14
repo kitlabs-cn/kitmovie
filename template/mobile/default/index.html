@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="keywords" content="{ctcms_name},{ctcms_keywords}" />
+<meta name="description" content="{ctcms_name},{ctcms_description}" />
+<meta name="format-detection" content="telephone=no" />
+<title>{ctcms_title}</title>
+<link rel="stylesheet" href="{ctcms_templets}/images/style.css" />
+<script language="javascript" src="{ctcms_templets}/js/jquery.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/swipe.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/iscroll.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/common.js"></script>
+<script language="javascript" src="{ctcms_templets}/js/history.js"></script>
+<style type="text/css">
+.swiper-container { margin:0 auto;position:relative;overflow:hidden;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden;z-index:1; } 
+.swiper-wrapper { position:relative;width:100%;-webkit-transition-property:-webkit-transform,left,top;-webkit-transition-duration:0s;-webkit-transform:translate3d(0px,0,0);-webkit-transition-timing-function:ease;-moz-transition-property:-moz-transform,left,top;-moz-transition-duration:0s;-moz-transform:translate3d(0px,0,0);-moz-transition-timing-function:ease;-o-transition-property:-o-transform,left,top;-o-transition-duration:0s;-o-transform:translate3d(0px,0,0);-o-transition-timing-function:ease;-o-transform:translate(0px,0px);-ms-transition-property:-ms-transform,left,top;-ms-transition-duration:0s;-ms-transform:translate3d(0px,0,0);-ms-transition-timing-function:ease;transition-property:transform,left,top;transition-duration:0s;transform:translate3d(0px,0,0);transition-timing-function:ease; } 
+.swiper-free-mode>.swiper-wrapper { -webkit-transition-timing-function:ease-out;-moz-transition-timing-function:ease-out;-ms-transition-timing-function:ease-out;-o-transition-timing-function:ease-out;transition-timing-function:ease-out;margin:0 auto; } 
+.swiper-slide { float:left; } 
+.swiper-wp8-horizontal { -ms-touch-action:pan-y; } 
+.swiper-wp8-vertical { -ms-touch-action:pan-x; } 
+</style>
+</head>
+<body>
+{ctcms_head}
+<section class="banner">
+		<h2>轮播图推荐</h2>
+		<div class="device">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+                {ctcms:vod table="vod" field="id,name,pic2" where="zid=1" limit="5" order="addtime desc"}
+				<div class="swiper-slide"><a href="[vod:playlink]"><img src="[vod:pic2]" alt="[vod:name]" id="swiper_1" ></a></div>
+                {/ctcms:vod}
+				</div>
+			</div>
+			<div class="pagination"></div>
+		</div>
+		<script>
+		$('#nav_0').addClass('on');
+		var mySwiper = new Swiper('.swiper-container',{
+			pagination: '.pagination',
+			loop: true,
+			grabCursor: true,
+			autoplay: 5000,
+			autoResize: true,
+			resizeReInit: true
+		});
+		window.onload = function(){
+			$('.swiper-container').css('height', $('#swiper_1').css('height'));
+		}
+		</script>
+</section>
+<section class="box box2">
+			<div class="title"><b></b><h2>今日热门</h2></div>
+			<ul>
+            {ctcms:vod table="vod" field="id,cid,name,pic,state,info,rhits" where="" limit="6" order="rhits desc"}
+			<li><a href="[vod:link]"><span><img height="150" src="[vod:pic]" alt="[vod:name]" />
+			<em>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</em>
+			</span><span>[vod:name]<strong>[vod:rhits]</strong>
+			</span></a>
+			</li>
+			{/ctcms:vod}
+			</ul>
+</section> 	
+{ctcms:class table="class" field="id,name" where="fid=0" limit="4" order="xid asc"}
+<section class="box box2">
+			<div class="title"><b></b><h2>[class:name]</h2></div>
+			<ul>
+            {ctcmstype:vod table="vod" field="id,cid,name,pic,info,rhits,state" where="cid=[class:id]" limit="6" order="addtime desc"}
+			<li><a href="[vod:link]"><span><img height="150" src="[vod:pic]" alt="[vod:name]" />
+			<em>{if:[vod:cid]==2}[vod:state]{else}[vod:info]{end if}</em>
+			</span><span>[vod:name]<strong>[vod:rhits]</strong></span></a>
+			</li>
+			{/ctcmstype:vod}
+			</ul>
+			<a href="[class:link]" aria-hidden="true" data-icon="更多" class="more"><span>更多</span></a>
+</section>
+{/ctcms:class}
+{ctcms_bottom}
+</body>
+</html>

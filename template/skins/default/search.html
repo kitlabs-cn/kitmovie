@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{ctcms_title}</title>
+    <meta name="keywords" content="{ctcms_keywords}" />
+    <meta name="description" content="{ctcms_description}" />
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/amazeui.css">
+    <link rel="stylesheet" href="{ctcms_indextemplets}/css/style.css">
+</head>
+<body>
+{ctcms_head}
+<div class="am-g am-g-fixed am-padding-top">
+    <div class="am-u-sm-12">
+        ADS
+    </div>
+</div>
+
+<div class="am-g am-g-fixed am-padding-top">
+    <div class="am-u-sm-12">
+    <b style="display:block;height:35px;">搜索：{ctcms_key}</b>
+	<!---- 分类---->
+	<div class="tag-box">
+    <table class="table" style="margin-bottom:0px;">
+        <tbody>
+        <tr>
+            <td class="tag-span">
+                <strong>分类：</strong>
+            </td>
+            <td>
+                <a class="movietype{if:'{ctcms_cid}'==''} on{end if}" href="{ctcms_url search=wd={ctcms_key}}">全部</a>
+				{ctcms:class table="class" field="id,name" where="fid=0" limit="6" order="xid asc"}
+                <a class="movietype{if:'{ctcms_cid}'=='[class:id]'} on{end if}" href="{ctcms_url search=cid=[class:id]&wd={ctcms_key}}">[class:name]</a>
+				{/ctcms:class}
+            </td>
+        </tr>
+        <tr>
+            <td class="tag-span">      
+                <strong>排序：</strong>
+            </td>
+            <td>
+                <a href="{ctcms_url search=wd={ctcms_key}&cid={ctcms_cid}}" class="movietype{if:'{ctcms_sort}'=='addtime' || '{ctcms_sort}'==''} on{end if}">最新</a>
+                <a href="{ctcms_url search=wd={ctcms_key}&cid={ctcms_cid}&sort=hits}" class="movietype{if:'{ctcms_sort}'=='hits'} on{end if}">最热</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+	<!---- //分类---->
+<!-- Gallery -->
+<ul data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-5 am-gallery-default am-thumbnails">
+{ctcms:vod table="vod" field="id,name,pic,info,year" page="40" order="addtime desc"}
+<li class="">
+    <div class="am-gallery-item">
+        <a href="[vod:link]">
+            <div class="main_img">
+			    <img alt="[vod:name]" style="height:250px;" src="[vod:pic]" />
+				<div class="show"><em class="imgArea"><b>观看视频</b></em></div>
+			</div>
+            <h3 class="am-gallery-title">[vod:name]</h3>
+            <div class="am-gallery-desc">[vod:info] / <em>[vod:year]</em></div>
+        </a>
+    </div>
+</li>
+{/ctcms:vod}
+</ul>
+    </div>
+</div>
+
+<div class="am-u-sm-12"{if:{ctcms_pagejs}<2} style="display:none;"{end if}>
+      <ul class="am-pagination am-pagination-centered">
+	  <li class="pre"{if:{ctcms_page}<2} style="display:none;"{end if}><a href="{ctcms_pageup}"><<</a></li>
+	  {ctcms_pagenum_8}
+	  <li class="pre"{if:{ctcms_page}>={ctcms_pagenum}} style="display:none;"{end if}><a href="{ctcms_pagedown}">>></a>
+	  </ul></div>
+</div>
+{ctcms_bottom}
+</body>
+</html>
